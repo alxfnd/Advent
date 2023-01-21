@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Day1.cs" />
+    <Compile Remove="Day2.cs" />
+    <Compile Remove="Day3.cs" />
+    <Compile Remove="Day4.cs" />
+    <Compile Remove="Day5.cs" />
+    <Compile Remove="Day6.cs" />
+    <Compile Remove="Day7.cs" />
+    <Compile Remove="Day8.cs" />
+    <Compile Remove="Day9.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Day1.cs" />
+    <None Include="Day2.cs" />
+    <None Include="Day3.cs" />
+    <None Include="Day4.cs" />
+    <None Include="Day5.cs" />
+    <None Include="Day6.cs" />
+    <None Include="Day8.cs" />
+    <None Include="Day9.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Day7.cs" />
+  </ItemGroup>
+
+</Project>
