@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +16,18 @@ namespace Advent22
         }
         public void BuildBottomFloor()
         {
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 grid[i][bottomFloor + 2] = 1;
             }
         }
         public void BuildGrid()
         {
-            grid = new int[300][];
-            for (int i = 0; i < 300; i++)
+            grid = new int[1000][];
+            for (int i = 0; i < 1000; i++)
             {
-                grid[i] = new int[250];
-                for(int c = 0; c < 250; c++)
+                grid[i] = new int[180];
+                for(int c = 0; c < 180; c++)
                 {
                     grid[i][c] = 0;
                 }
@@ -35,7 +35,6 @@ namespace Advent22
         }
         public void SetSpaces(int x, int y, int destx, int desty)
         {
-            x -= 400; destx-= 400;
             grid[x][y] = 1;
             while (destx > x) { x++; grid[x][y] = 1; }
             while (destx < x) { x--; grid[x][y] = 1; }
@@ -44,9 +43,8 @@ namespace Advent22
         }
         public bool DropSand()
         {
-            int x = 100;
+            int x = 500;
             int y = 0;
-            if (grid[x][y] == 2) return false;
             int dir = 2;
             while (dir != 0)
             {
@@ -58,10 +56,12 @@ namespace Advent22
                     case 3: x++; y++; break;
                     case 0: break;
                 }
-                if (y + 1 == 250) break;
+                // Part1 Commented out
+                //if (y + 1 == 180) break;
             }
-            if (y + 1 == 250) return false;
+            //if (y + 1 == 180) return false;
             grid[x][y] = 2;
+            if (grid[500][0] == 2) return false;
             return true;
         }
         int WhichDirection(int x, int y)
@@ -73,22 +73,22 @@ namespace Advent22
         }
         public void DisplayGrid()
         {
-            for (int i = 0; i < 200; i++)
+            for (int i = 400; i < 580; i++)
             {
-                for (int c = 0; c < 200; c++)
+                for (int c = 0; c < 170; c++)
                 {
                     string m = ".";
                     if (grid[i][c] != 0) m = grid[i][c].ToString();
-                    if (c == 199) Console.WriteLine(m); else Console.Write(m);
+                    if (c == 169) Console.WriteLine(m); else Console.Write(m);
                 }
             }
-            Console.WriteLine(bottomFloor + 2);
         }
+        public void GetValue(int x, int y) { Console.WriteLine(grid[x][y]); }
         public Grid() { }
     }
     internal class Day14
     {
-        readonly List<string> File = System.IO.File.ReadLines("C:\\Users\\alexf\\OneDrive\\Documents\\AdventofCode\\AdventofCode\\22\\Day14.txt").ToList();
+        readonly List<string> File = System.IO.File.ReadLines("C:\\tmp\\Advent\\Day14.txt").ToList();
         
         public Day14()
         {
@@ -106,7 +106,7 @@ namespace Advent22
                     grid.SetSpaces(x, y, destx, desty);
                 }
             }
-            //grid.BuildBottomFloor();
+            grid.BuildBottomFloor();
             bool allSand = true;
             int totalSand = 0;
             while (allSand)
@@ -115,10 +115,11 @@ namespace Advent22
                 totalSand++;
             }
             grid.DisplayGrid();
-            Console.WriteLine(totalSand - 1); //exclude the last dropped sand
+            grid.GetValue(100, 0);
+            Console.WriteLine(totalSand); //Part 1 = -1 sand to exclude the last dropped sand
             //Part1 = 825
-            //Part2 : 1747 is too low
-            // 1750 is too low
+            //Part2 : 1747 is too low (turns out the checks from Part1 were interfering)
+            // 26729
         }
     }
 }
